@@ -1,4 +1,4 @@
-/* -------------------- TCP Connection Class ---------------------- *
+﻿/* -------------------- TCP Connection Class ---------------------- *
  * ---------------------------------------------------------------- *
  * Provides interface for TCP Client
  * It is loaded dynamically by ICATEmpaticaBLEClient class.
@@ -13,7 +13,6 @@ using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Diagnostics;
-using System.Threading;
 
 using Debug = UnityEngine.Debug;
 
@@ -24,27 +23,22 @@ public class TCPConnection : MonoBehaviour {
 	
 	//ip/address of the server, 127.0.0.1 is for your own computer
 	public string conHost = "127.0.0.1";
-
-    //port for the server, make sure to unblock this in your router firewall if you want to allow external connections
-    public int conPort = 28000;
-    //public int conPort = 15020;
-
-    //a true/false variable for connection status
-    public bool socketReady = false;
+	
+	//port for the server, make sure to unblock this in your router firewall if you want to allow external connections
+	public int conPort = 28000;
+	
+	//a true/false variable for connection status
+	public bool socketReady = false;
 
 	public TcpClient mySocket;
-    NetworkStream theStream;
-    StreamWriter theWriter;
-    StreamReader theReader;
-    Stopwatch myStopWatch;
-
-    //try to initiate connection
-    public void setupSocket() {
-
+	NetworkStream theStream;
+	StreamWriter theWriter;
+	StreamReader theReader;
+	Stopwatch myStopWatch;
+	
+	//try to initiate connection
+	public void setupSocket() {
 		try {
-			Debug.Log("Waiting for some secs");
-			
-			Thread.Sleep(5000);
 			mySocket = new TcpClient(conHost, conPort);
 			theStream = mySocket.GetStream();
 			theWriter = new StreamWriter(theStream);
@@ -52,8 +46,8 @@ public class TCPConnection : MonoBehaviour {
 			socketReady = true;
 			mySocket.NoDelay = true;
 			myStopWatch = Stopwatch.StartNew();
-			Debug.Log("Connection Successful");
-        }
+			Debug.Log("Connection Successful");	
+		}
 		catch (Exception e) {
 			Debug.Log("Socket error:" + e);
 		}

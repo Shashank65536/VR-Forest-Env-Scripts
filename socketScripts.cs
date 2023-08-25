@@ -8,7 +8,7 @@ namespace EmpaticaE4BluetoothExample
         static void Main(string[] args)
         {
             // Connect to the Empatica E4 device
-            SerialPort serialPort = new SerialPort("COM3", 28000);
+            SerialPort serialPort = new SerialPort("28000", 115200);
             serialPort.Open();
 
             // Send the command to start streaming data
